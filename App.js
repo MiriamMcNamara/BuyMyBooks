@@ -1,24 +1,44 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Image,
+  TouchableWithoutFeedback,
+  TouchableHighlight,
+  TouchableOpacity,
+  Alert,
+  Button,
+  Platform,
+} from "react-native";
 export default function App() {
-  console.log("App executed");
+  const handlePress = () => console.log("Text pressed");
 
   return (
-    <View style={styles.container}>
-      <Text>Hello World</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={[styles.container, containerStyle]}>
+      <Text onPress={handlePress}>By My Books!</Text>
+      <Button
+        color="darkorange"
+        title="Click Me"
+        onPress={() =>
+          Alert.prompt("Buy My Books", "Wanna buy a book?", (text) =>
+            console.log(text)
+          )
+        }
+      />
+    </SafeAreaView>
   );
 }
 
-let x = 1;
+const containerStyle = { backgroundColor: "lightblue" };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "center",
+    // alignItems: "center",
+    paddingTop: Platform.OS === "android" ? 20 : 0,
   },
 });
