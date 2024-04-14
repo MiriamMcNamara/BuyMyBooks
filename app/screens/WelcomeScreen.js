@@ -1,7 +1,9 @@
 import React from "react";
 import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import colors from "../config/colors";
+import AppButton from "../components/AppButton";
 
 function WelcomeScreen(props) {
   return (
@@ -10,10 +12,17 @@ function WelcomeScreen(props) {
       source={require("../assets/myBooks.png")}
     >
       <View style={styles.titleContainer}>
+        <MaterialCommunityIcons
+          name="book-open-variant"
+          size={150}
+          color="white"
+        />
         <Text style={styles.title}>Buy My Books</Text>
       </View>
-      <View style={styles.loginButton}></View>
-      <View style={styles.registerButton}></View>
+      <View style={styles.buttonContainer}>
+        <AppButton title="Login" />
+        <AppButton title="Register" color="secondary" />
+      </View>
     </ImageBackground>
   );
 }
@@ -23,10 +32,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
   },
-  loginButton: {
+  buttonContainer: {
+    padding: 20,
     width: "100%",
-    height: 70,
-    backgroundColor: colors.primary,
   },
   registerButton: {
     width: "100%",
@@ -35,15 +43,16 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "white",
-    fontSize: 44,
-    fontWeight: "bold",
-    backgroundColor: "rgba(0, 0, 0, 0.25)", //to make more readable on image...change?
+    fontSize: 39,
+    fontWeight: "600",
   },
   titleContainer: {
     position: "absolute",
     top: 70,
     alignItems: "center",
     alignSelf: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.25)",
+    borderRadius: "50%", //to make more readable on image...change?
   },
 });
 
