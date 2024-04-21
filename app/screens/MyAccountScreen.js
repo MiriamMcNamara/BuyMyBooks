@@ -30,7 +30,7 @@ export default function MyAccountScreen() {
       <View style={styles.container}>
         <ListItem
           title="Miriam McNamara"
-          subTitle="stars4mimi@gmail.com"
+          subTitle="test@example.com"
           image={require("../assets/miriam.png")}
         />
       </View>
