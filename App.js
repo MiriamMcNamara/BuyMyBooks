@@ -11,34 +11,12 @@ import Screen from "./app/components/Screen";
 import { useState } from "react";
 import AppTextInput from "./app/components/AppTextInput";
 import AppPicker from "./app/components/AppPicker";
-
-const categories = [
-  { label: "YA Fiction", value: 1 },
-  { label: "LGBTQIA", value: 2 },
-  { label: "Contemporary", value: 3 },
-];
+import LoginScreen from "./app/screens/LoginScreen";
 
 export default function App() {
-  const [firstName, setFirstName] = useState("");
-  const [isNew, setIsNew] = useState(false);
-  const [category, setCategory] = useState();
-
   return (
     <GestureHandlerRootView>
-      <Screen>
-        <Switch
-          value={isNew}
-          onValueChange={(newValue) => setIsNew(newValue)}
-        />
-        <AppTextInput placeholder="Username" icon={"email"} />
-        <AppPicker
-          icon={"apps"}
-          placeholder="Category"
-          items={categories}
-          selectedItem={category}
-          onSelectItem={(item) => setCategory(item)}
-        />
-      </Screen>
+      <LoginScreen />
     </GestureHandlerRootView>
   );
 }
