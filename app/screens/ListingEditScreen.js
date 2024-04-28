@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import colors from "../config/colors";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import AppFormPicker from "../components/forms/AppFormPicker";
+import CategoryPickerItem from "../components/CategoryPickerItem";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -14,9 +15,24 @@ const validationSchema = Yup.object().shape({
 });
 
 const categories = [
-  { label: "Science Fiction", value: 1 },
-  { label: "Fantasy", value: 2 },
-  { label: "Contemporary", value: 3 },
+  {
+    label: "Science Fiction",
+    value: 1,
+    backgroundColor: colors.secondary,
+    icon: "alien",
+  },
+  {
+    label: "Fantasy",
+    value: 2,
+    backgroundColor: colors.yellow,
+    icon: "unicorn",
+  },
+  {
+    label: "Contemporary",
+    value: 3,
+    backgroundColor: colors.primary,
+    icon: "heart",
+  },
 ];
 
 export default function LoginScreen() {
@@ -42,11 +58,15 @@ export default function LoginScreen() {
           placeholder={"Price"}
           keyboardType={"numeric"}
           icon={"cash"}
+          width={120}
         />
         <AppFormPicker
           items={categories}
           name={"category"}
           placeholder={"Category"}
+          width={"50%"}
+          PickerItemComponent={CategoryPickerItem}
+          numberOfColumns={3}
         />
         <AppFormField
           name={"description"}

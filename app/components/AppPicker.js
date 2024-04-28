@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Button } from "react-native";
 import Screen from "./Screen";
 import PickerItem from "./PickerItem";
+import { number } from "yup";
 
 export default function AppPicker({
   icon,
@@ -16,12 +17,15 @@ export default function AppPicker({
   items,
   selectedItem,
   onSelectItem,
+  numberOfColumns = 1,
+  PickerItemComponent = PickerItem,
+  width = "100%",
 }) {
   const [open, setOpen] = useState(false);
   return (
     <>
       <TouchableWithoutFeedback onPress={() => setOpen(true)}>
-        <View style={styles.container}>
+        <View style={[styles.container, { width: width }]}>
           {icon && (
             <MaterialCommunityIcons
               name={icon}
@@ -44,10 +48,12 @@ export default function AppPicker({
         <Screen>
           <Button onPress={() => setOpen(false)} title="Close"></Button>
           <FlatList
+            numColumns={numberOfColumns}
             data={items}
             keyExtractor={(item) => item.value.toString()}
             renderItem={({ item }) => (
-              <PickerItem
+              <PickerItemComponent
+                item={item}
                 label={item.label}
                 onPress={() => {
                   setOpen(false);
@@ -67,7 +73,6 @@ const styles = StyleSheet.create({
     backgroundColor: defaultStyles.colors.light,
     borderRadius: 25,
     flexDirection: "row",
-    width: "100%",
     padding: 15,
     marginVertical: 10,
   },
